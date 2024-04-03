@@ -45,9 +45,9 @@
 		  </svg>
 		</a></li>
 	  </ul>
-	  <!--	  <button class="button button__green about-me__offer">Offer a-->
-	  <!--		job-->
-	  <!--	  </button>-->
+	  	  <button class="button button__green about-me__offer">Offer a
+	  		job
+	  	  </button>
 	</section>
   </div>
 </header>
@@ -78,6 +78,13 @@
 			href="https://www.freecodecamp.org/certification/alonesa/javascript-algorithms-and-data-structures"><img
 			alt="js fcc certificate"
 			src="static/img/jscert.png">
+		  </a>
+		</li>
+		<li class="certificates__badge">
+		  <a
+			href="https://www.sololearn.com/certificates/CC-EJU5MH2T"><img
+			alt="SQL Certificate"
+			src="static/img/SQL-certificate.jpg">
 		  </a>
 		</li>
 	  </ul>
@@ -366,6 +373,35 @@
 	if (!getForm.contains(evt.target) && evt.target !== getButton) {
 	  getForm.style.display = 'none';
 	}
+  });
+
+  const form = document.getElementById('contact-form');
+
+  // Add an event listener to the form's submit event
+  form.addEventListener('submit', function(event) {
+	event.preventDefault(); // Prevent the default form submission
+ 
+	// Collect form data
+	const formData = new FormData(form);
+ 
+	// Perform any necessary validation on the form data
+	// ...
+ 
+	// Create an AJAX request
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', 'https://www.pythonanywhere.com/user/alona/files/home/alona/mysite/flask_app.py/send-mail', true);
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+ 
+	// Handle the response from the server
+	xhr.onreadystatechange = function() {
+	  if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+		// Process the response, if needed
+		console.log(xhr.responseText);
+	  }
+	};
+ 
+	// Send the form data
+	xhr.send(new URLSearchParams(formData));
   });
 </script>
 </body>
