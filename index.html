@@ -45,9 +45,9 @@
 		  </svg>
 		</a></li>
 	  </ul>
-	  	  <button class="button button__green about-me__offer">Offer a
-	  		job
-	  	  </button>
+	  <button class="button button__green about-me__offer">Offer a
+		job
+	  </button>
 	</section>
   </div>
 </header>
@@ -331,19 +331,26 @@
 	  </div>
 	  <div class="contact-form__email">
 		<label for="contact-form__email">E-mail:</label>
-		<input type="email" name="contact-form__email" id="contact-form__email"
+		<input type="email" name="contact-form__email-field" id="contact-form__email"
 			   placeholder="E-mail">
 	  </div>
 	  <div class="contact-form__message">
-		<label for="contact-form__message">Your message</label>
-		<textarea name="contact-form__message" id="contact-form__message"
+		<label for="contact-form__message-field">Your message</label>
+		<textarea name="contact-form__message-field" id="contact-form__message-field"
 				  placeholder="Leave your message here">
-            </textarea>
+		</textarea>
 	  </div>
 	  <button class="button button__green" type="submit">Send request</button>
 	</form>
   </div>
 </section>
+<div class="alert alert-success">
+  <h4>Your Form Is Submitted Successfully</h4>
+</div>
+<div class="alert alert-dangerous">
+  <h4>Something Went Wrong</h4>
+</div>
+
 <script>
   const getButton = document.getElementsByClassName("about-me__offer")[0];
   const getForm = document.getElementsByClassName("job-reservation")[0];
@@ -374,33 +381,40 @@
 	  getForm.style.display = 'none';
 	}
   });
-
-  const form = document.getElementById('contact-form');
-
-  // Add an event listener to the form's submit event
-  form.addEventListener('submit', function(event) {
-	event.preventDefault(); // Prevent the default form submission
- 
+  
+  const contactForm = document.getElementById('contact-form');
+  
+  const showMessage = (alertName) => {
+	const alertBlock = document.querySelector(alertName);
+	console.log(alertBlock)
+	alertBlock.style.display = 'block';
+	setTimeout(function () {
+	  alertBlock.style.display = 'none';
+	}, 3000);
+  }
+  
+  
+  contactForm.addEventListener('submit', function (event) {
+	event.preventDefault();
+	
 	// Collect form data
-	const formData = new FormData(form);
- 
-	// Perform any necessary validation on the form data
-	// ...
- 
-	// Create an AJAX request
+	const formData = new FormData(contactForm);
 	const xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://www.pythonanywhere.com/user/alona/files/home/alona/mysite/flask_app.py/send-mail', true);
+	xhr.open('POST', 'https://alona.pythonanywhere.com/', true);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
- 
+	
 	// Handle the response from the server
-	xhr.onreadystatechange = function() {
-	  if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-		// Process the response, if needed
-		console.log(xhr.responseText);
+	xhr.onreadystatechange = function () {
+	  if (xhr.readyState === XMLHttpRequest.DONE) {
+		if (xhr.status === 200) {
+		  contactForm.reset();
+		  getForm.style.display = 'none';
+		  showMessage('.alert-success');
+		} else {
+		  showMessage('.alert-danger');
+		}
 	  }
 	};
- 
-	// Send the form data
 	xhr.send(new URLSearchParams(formData));
   });
 </script>

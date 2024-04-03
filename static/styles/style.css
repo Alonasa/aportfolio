@@ -107,7 +107,7 @@ section {
     color: green;
 }
 
-.job-reservation {
+.job-reservation, .alert {
     width: 90%;
     display: none;
     position: absolute;
@@ -166,7 +166,7 @@ input {
     width: 100%;
 }
 
-.contact-form__message textarea {
+textarea {
     width: 100%;
     height: 100px;
     border: 2px solid green;
@@ -244,6 +244,22 @@ input {
     text-decoration: none;
 }
 
+.alert-success, .alert-dangerous {
+    background-color: white;
+    border: solid 3px transparent;
+    display: none;
+}
+
+.alert-success {
+    color: green;
+    border-color: green;
+}
+
+.alert-dangerous {
+    border-color: red;
+    color: red;
+}
+
 @media(min-width: 767px){
     .about-me {
         width: 70%;
@@ -254,10 +270,11 @@ input {
         max-width: 200px;
     }
 
-    .job-reservation-form {
+    .job-reservation-form, .alert {
         padding: 30px;
         margin: 0 auto;
         max-width: 800px;
+        background-color: white;
     }
 
     .job-reservation-form form {
