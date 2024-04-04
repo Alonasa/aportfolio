@@ -273,6 +273,10 @@ textarea {
         max-width: 200px;
     }
 
+    .portfolio__project-description {
+        text-align: left;
+    }
+
     .job-reservation-form, .alert {
         padding: 30px;
         margin: 0 auto;
