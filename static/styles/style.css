@@ -51,12 +51,23 @@ section {
 }
 
 .about-me {
+    width: 80%;
     margin: 20px auto;
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-.about-me h3, section h3 {
+.about-me h3, section h3, .about-me__skills {
     color: green;
+}
+
+#slider {
+    color: black;
+}
+
+.about-me__info {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
 }
 
 .about-me__photo {
